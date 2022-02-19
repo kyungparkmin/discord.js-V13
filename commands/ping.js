@@ -2,9 +2,10 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("야")
-    .setDescription("호라고 대답합니다!"),
+    .setName("핑")
+    .setDescription("핑을 알려줍니다"),
   async execute(interaction) {
-    await interaction.reply("호!");
+    const sent = await interaction.reply({ content: 'Pinging...', fetchReply: true });
+    interaction.editReply(`Roundtrip latency: ${sent.createdTimestamp - interaction.createdTimestamp}ms`);
   },
 };
